@@ -20,3 +20,9 @@
 .pointer{
     cursor: pointer;
 }
+body{
+    background-image: url(http://localhost/InscripcionEvento/imagenes/img_ins.png);
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    background-position-y: 100px;
+}

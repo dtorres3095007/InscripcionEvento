@@ -1,12 +1,12 @@
-<div  class="align-center col-md-12 centro"><h3>CRECS 2018</h3></div>
-<div class="container col-md-12"  id="Incr">
+
+<div class="container col-md-12 mar-3"  id="Incr">
 
     <div class="col-md-6 ">
         <div class="alert alert-warning pointer" onclick="Continuar()"><span class="glyphicon glyphicon-share"></span> Ya Cuento con Una Inscripcion, ir al Pago.</div>
         <form id="guardarinscripcion">
             <div class="panel panel-default" >
                 <div class="panel-heading header_panel centro">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-pencil"></span> INSCRIPCIONES</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-pencil"></span> INSCRIPCIONES CRECS 2018</h3>
                 </div>
                 <div class="panel-body">
                     <input type="text" id="nombres" name="nombres" autofocus="" required="" class="form-control mar-3" placeholder="Nombres">
@@ -51,7 +51,7 @@
 </div>
 
             
-<div class="container col-md-12 oculto" id="pagar" >
+<div class="container col-md-12 oculto mar-3" id="pagar" >
 
     <div class="col-md-6">
         <div class="panel panel-default">
