@@ -68,7 +68,7 @@
 
                     <table>
 
-                        <tr><td><input type="hidden" name="on0" value="EVENTOS">EVENTOS</td></tr><tr><td><select name="os0">
+                        <tr><td><input type="hidden" name="on0" value="EVENTOS" >EVENTOS</td></tr><tr><td><select name="os0" class="form-control">
 
                                     <option value="INSCRIPCION">INSCRIPCION $100.00 USD</option>
 
