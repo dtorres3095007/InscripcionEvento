@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
 class pages_model extends CI_Model {
 
     var $inscripciones_tabla = "inscripciones";
+    var $inscripciones_mul_tabla = "inscripciones_multiples";
 
     public function __construct() {
         parent::__construct();
@@ -31,5 +32,27 @@ class pages_model extends CI_Model {
 
         return 0;
     }
+
+    public function guardar_multiple($nombres, $apellidos, $id_inscrip) {
+        $this->db->insert($this->inscripciones_mul_tabla, array(
+            "nombres" => $nombres,
+            "apellidos" => $apellidos,
+            "id_inscripcion" => $id_inscrip,
+        ));
+
+        return 0;
+    }
+    
+     public function traer_ultimo_registro($nombres,$apellidos) {
+        $this->db->select("id");
+        $this->db->from($this->inscripciones_tabla);
+        $this->db->order_by("id", "desc");
+        $this->db->where('nombres', $nombres);
+        $this->db->where('apellidos', $apellidos);
+        $query = $this->db->get();
+          $row = $query->row();
+        return $row->id;
+    }
+
 
 }

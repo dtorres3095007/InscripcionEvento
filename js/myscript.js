@@ -33,7 +33,7 @@ function GuardarInscripcion() {
 
     //Tomamos los datos del formulario de inscripcion
     var formData = new FormData(document.getElementById("guardarinscripcion"));
-
+    formData.append("nump", p);
     //  Enviamos el formulario al controlador     
     $.ajax({
         url: "http://" + server + "/InscripcionEvento/index.php/pages/GuardarInscripcion",
@@ -77,7 +77,11 @@ function GuardarInscripcion() {
         } else {
             Limpiar_focus("#des_", "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
             $("input").val("");
-            $("textarea").val("");
+            $("textarea").val("")
+            $("#maspersona").html("");
+            p = 0;
+            $("#cbx_mas_personas").val("");
+
             Continuar();
         }
 
@@ -97,7 +101,7 @@ function MasPersona() {
     if (p == 0) {
         $("#maspersona").append("<br>");
     }
-    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><input type="text"  name="nombres' + p + '" required="" class="form-control mar-3" placeholder="Nombres"><input type="text"  name="apellidos" required="" class="form-control mar-3" placeholder="Apellidos"></div></div>');
+    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><input type="text"  name="nombres' + p + '" required="" class="form-control mar-3" placeholder="Nombres"><input type="text"  name="apellidos' + p + '" required="" class="form-control mar-3" placeholder="Apellidos"></div></div>');
     p++;
     if (p >= 4) {
         $("#masperso").remove();
@@ -110,7 +114,7 @@ function CrearNpersonas(n) {
     for (var i = 0; i < n; i++) {
         MasPersona();
     }
-      ActivarQuitarEspacios();
+    ActivarQuitarEspacios();
 }
 function Limpiar_focus(sele, mensaje, tipo_me) {
     $("#mensaje_error_bien").remove();
