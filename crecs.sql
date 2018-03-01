@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2018 a las 15:45:04
+-- Tiempo de generación: 01-03-2018 a las 17:59:25
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 7.0.4
 
@@ -30,6 +30,8 @@ CREATE TABLE `inscripciones` (
   `id` int(11) NOT NULL,
   `nombres` varchar(30) NOT NULL,
   `apellidos` varchar(30) NOT NULL,
+  `tipo_identificacion` varchar(30) NOT NULL DEFAULT 'Cedula de Ciudadania',
+  `identificacion` varchar(30) NOT NULL,
   `empresa_trabaja` varchar(30) NOT NULL,
   `codigo_empresa_paga` varchar(30) NOT NULL,
   `telefono` varchar(30) NOT NULL,
@@ -56,6 +58,8 @@ CREATE TABLE `inscripciones_multiples` (
   `id_inscripcion` int(11) NOT NULL,
   `nombres` varchar(30) NOT NULL,
   `apellidos` varchar(30) NOT NULL,
+  `tipo_identificacion` varchar(30) NOT NULL,
+  `identificacion` varchar(30) NOT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
