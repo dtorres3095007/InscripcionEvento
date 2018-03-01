@@ -2,7 +2,10 @@
 <div class="container col-md-7 mar-3"  id="Incr">
 
 
-    <div class="alert alert-success pointer" onclick="Continuar()"><span class="glyphicon glyphicon-share"></span> Ya Cuento con Una Inscripcion, ir al Pago.</div>
+    <div class="alert alert-success pointer" ><span class="glyphicon glyphicon-share"></span> Ya Cuento con Una Inscripcion, ir al Pago.
+        <input class="mar-3" type="radio" name="pago2" value="1" onclick="Continuar(1)"> Via PayPal - 
+        <input class="mar-3" type="radio" name="pago2" value="2" onclick="Continuar(2)"> Transferencia Bancaria<br>
+    </div>
     <form id="guardarinscripcion">
         <div class="panel panel-default" >
             <div class="panel-heading header_panel centro">
