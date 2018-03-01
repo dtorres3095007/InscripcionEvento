@@ -58,6 +58,13 @@ function GuardarInscripcion() {
 
         } else if (datos == 12) {
             Limpiar_focus("#apellidos", "<b>!Error!</b> El Campo Apellidos No puede Contener Numeros.", "danger");
+        } else if (datos == 13) {
+            Limpiar_focus("#cbx_tipo_id", "<b>!Error!</b> Seleccione Tipo Idetificacion.", "danger");
+        } else if (datos == 14) {
+            Limpiar_focus("#idetificacion", "<b>!Error!</b> Ingrese  Idetificacion.", "danger");
+        } else if (datos == 15) {
+            var mensaje = "<b>!Error!</b> El Numero de Identificacion " + $("#idetificacion").val() + " Ya Tiene Una Inscrpcion.";
+            Limpiar_focus("#idetificacion", mensaje, "danger");
         } else if (datos == 3) {
             Limpiar_focus("#empresa_trabaja", "<b>!Error!</b> Ingrese Empresa donde Trabaja.", "danger");
         } else if (datos == 4) {
@@ -74,34 +81,45 @@ function GuardarInscripcion() {
         } else if (datos == 10) {
 
             Limpiar_focus("#ciudad_pais", "<b>!Error!</b> Ingrese Ciudad-Pais.", "danger");
+        } else if (datos == 0) {
+             var for_pago = $('input:radio[name=pago]:checked').val();
+            var j = ".des_"+for_pago;
+            Limpiar_focus(j, "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
+           
+            
+            //$("input").val("");
+            //$("textarea").val("")
+           // $("#maspersona").html("");
+           // p = 0;
+            //$("#cbx_mas_personas").val("");
+            //$("#cbx_tipo_id").val("");
+            Continuar(for_pago);
         } else {
-            Limpiar_focus("#des_", "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
-            $("input").val("");
-            $("textarea").val("")
-            $("#maspersona").html("");
-            p = 0;
-            $("#cbx_mas_personas").val("");
-
-            Continuar();
+            Limpiar_focus("#campo_obli", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");
         }
 
     });
 
 }
 
-function Continuar() {
+function Continuar(pago) {
     $("#Incr").hide("slow");
-    $("#pagar").show("slow");
+    if (pago == 1) {
+        $("#pagar").show("slow");
+    } else {
+        $("#pagar_banco").show("slow");
+    }
 }
 function Regresar() {
     $("#pagar").hide("slow");
+    $("#pagar_banco").hide("slow");
     $("#Incr").show("slow");
 }
 function MasPersona() {
     if (p == 0) {
         $("#maspersona").append("<br>");
     }
-    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><input type="text"  name="nombres' + p + '" required="" class="form-control mar-3" placeholder="Nombres"><input type="text"  name="apellidos' + p + '" required="" class="form-control mar-3" placeholder="Apellidos"></div></div>');
+    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><input type="text"  name="nombres' + p + '" required="" class="form-control mar-3" placeholder="Nombres"><input type="text"  name="apellidos' + p + '" required="" class="form-control mar-3" placeholder="Apellidos"> <select class="form-control mar-3" required=""  name="tipo_identificacion' + p + '"><option value="">Seleccione Tipo Identificacion *</option><option value="Cedula de Ciudadania">Cédula de Ciudadania</option><option value="Cedula de Extranjería">Cédula de Extranjería</option><option value="Documento Nacional de Identidad">Documento Nacional de Identidad</option></select><input type="number"  name="identificacion' + p + '" required="" class="form-control mar-3" placeholder="Identificacion *"></div></div>');
     p++;
     if (p >= 4) {
         $("#masperso").remove();

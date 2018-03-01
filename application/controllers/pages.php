@@ -20,8 +20,11 @@ class pages extends CI_Controller {
         $nump = $this->input->post('nump');
         $nombres = $this->input->post('nombres');
         $apellidos = $this->input->post('apellidos');
+        $identificacion = $this->input->post('identificacion');
+        $tipo_identificacion = $this->input->post('tipo_identificacion');
         $empresa_trabaja = $this->input->post('empresa_trabaja');
-        $codigo_emp_paga = $this->input->post('codigo_emp_paga');
+        //$codigo_emp_paga = $this->input->post('codigo_emp_paga');
+        $codigo_emp_paga="SINCODIGO";
         $telefono = $this->input->post('telefono');
         $direccion = $this->input->post('direccion');
         $postal = $this->input->post('postal');
@@ -38,6 +41,15 @@ class pages extends CI_Controller {
             return;
         } else if (empty($apellidos) || ctype_space($apellidos)) {
             echo json_encode(2);
+            return;
+        }else if (empty($tipo_identificacion) || ctype_space($tipo_identificacion)) {
+            echo json_encode(13);
+            return;
+        } else if (empty($identificacion) || ctype_space($identificacion)) {
+            echo json_encode(14);
+            return;
+        }  else if ($this->pages_model->Existe_identificacion($identificacion)) {
+            echo json_encode(15);
             return;
         } else if (empty($empresa_trabaja) || ctype_space($empresa_trabaja)) {
             echo json_encode(3);
@@ -60,7 +72,7 @@ class pages extends CI_Controller {
         } else if (empty($ciudad_pais) || ctype_space($ciudad_pais)) {
             echo json_encode(10);
             return;
-        } else if ($valida_nombre == false) {
+        }  else if ($valida_nombre == false) {
             echo json_encode(11);
             return;
         } else if ($valida_apellidos == FALSE) {
@@ -68,16 +80,20 @@ class pages extends CI_Controller {
             return;
         }
 
-        $resultado = $this->pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip);
+        $resultado = $this->pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $tipo_identificacion);
         if ($nump > 0) {
-            $id_inscrip = $this->pages_model->traer_ultimo_registro($nombres, $apellidos);
+            $id_inscrip = $this->pages_model->traer_ultimo_registro($identificacion);
 
             for ($i = 0; $i < $nump; $i++) {
                 $n = "nombres" . $i;
                 $a = "apellidos" . $i;
+                $tiden = "tipo_identificacion" . $i;
+                $iden= "identificacion" . $i;
                 $nombres = $this->input->post($n);
                 $apellidos = $this->input->post($a);
-                $resultado = $this->pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip);
+                $identificacion = $this->input->post($iden);
+                $tipo_identificacion = $this->input->post($tiden);
+                $resultado = $this->pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip,$identificacion,$tipo_identificacion);
             }
         }
         echo json_encode($resultado);

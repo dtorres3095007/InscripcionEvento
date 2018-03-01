@@ -13,7 +13,7 @@ class pages_model extends CI_Model {
         $this->load->database();
     }
 
-    public function guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip) {
+    public function guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $identificaciontipo) {
         $this->db->insert($this->inscripciones_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
@@ -28,31 +28,46 @@ class pages_model extends CI_Model {
             "correo" => $correo,
             "empresa_paga" => $empresa_paga,
             "ciudad_pais" => $ciudad_pais,
+            "identificacion" => $identificacion,
+            "tipo_identificacion" => $identificaciontipo,
         ));
 
         return 0;
     }
 
-    public function guardar_multiple($nombres, $apellidos, $id_inscrip) {
+    public function guardar_multiple($nombres, $apellidos, $id_inscrip,$identificacion,$identificaciontipo) {
         $this->db->insert($this->inscripciones_mul_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
             "id_inscripcion" => $id_inscrip,
+            "identificacion" => $identificacion,
+            "tipo_identificacion" => $identificaciontipo,
         ));
 
         return 0;
     }
-    
-     public function traer_ultimo_registro($nombres,$apellidos) {
+
+    public function traer_ultimo_registro($identificacion) {
         $this->db->select("id");
         $this->db->from($this->inscripciones_tabla);
         $this->db->order_by("id", "desc");
-        $this->db->where('nombres', $nombres);
-        $this->db->where('apellidos', $apellidos);
+        $this->db->where('identificacion', $identificacion);
         $query = $this->db->get();
-          $row = $query->row();
+        $row = $query->row();
         return $row->id;
     }
-
+     public function Existe_identificacion($identificacion) {
+        $this->db->select('count(*) as cantidad');
+        $this->db->from($this->inscripciones_tabla);
+        $this->db->where('identificacion', $identificacion);
+        $result = $this->db->get();
+        $cantidad = $result->result_array();
+        if ($cantidad[0]["cantidad"] == 0) {
+            return false;
+        } else {
+            return true;
+            ;
+        }
+    }
 
 }
