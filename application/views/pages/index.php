@@ -139,7 +139,7 @@
 
 
 
-<div class="alert alert-warning col-md-4 mar-3 text-justify" >
+<div class="alert alert-info col-md-4 mar-3 text-justify" >
     El costo de la inscripción son 100USD (pagos internacionales) o $285.600 (pagos nacionales), e incluye los cafés y refrescos de los descansos, y la comida del jueves día 3 de mayo. A este costo, si está interesado en asistir a alguno de los dos talleres tendrá que sumar la cantidad de 50 usd o $142.800 por taller.
 
     Debido a los gastos de organización y a lo ajustado del precio, no es posible hacer descuentos a los autores de ponencias, comunicaciones y posters.

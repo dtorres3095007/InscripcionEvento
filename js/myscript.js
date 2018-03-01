@@ -87,12 +87,12 @@ function GuardarInscripcion() {
             Limpiar_focus(j, "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
            
             
-            //$("input").val("");
-            //$("textarea").val("")
-           // $("#maspersona").html("");
-           // p = 0;
-            //$("#cbx_mas_personas").val("");
-            //$("#cbx_tipo_id").val("");
+             $("input").val("");
+             $("textarea").val("")
+             $("#maspersona").html("");
+             p = 0;
+             $("#cbx_mas_personas").val("");
+             $("#cbx_tipo_id").val("");
             Continuar(for_pago);
         } else {
             Limpiar_focus("#campo_obli", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");
