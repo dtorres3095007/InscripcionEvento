@@ -44,15 +44,14 @@ function GuardarInscripcion() {
         contentType: false,
         processData: false
     }).done(function (datos) {
-
+        alert(datos)
         if (datos == 1) {
 
             Limpiar_focus("#nombres", "<b>!Error!</b> Ingrese Nombres.", "danger");
 
         } else if (datos == 2) {
             Limpiar_focus("#apellidos", "<b>!Error!</b> Ingrese Apellidos.", "danger");
-        }
-        if (datos == 11) {
+        }else if (datos == 11) {
 
             Limpiar_focus("#nombres", "<b>!Error!</b> El Campo Nombres No puede Contener Numeros.", "danger");
 
@@ -65,6 +64,15 @@ function GuardarInscripcion() {
         } else if (datos == 15) {
             var mensaje = "<b>!Error!</b> El Numero de Identificacion " + $("#idetificacion").val() + " Ya Tiene Una Inscrpcion.";
             Limpiar_focus("#idetificacion", mensaje, "danger");
+        } else if (datos == 16) {
+            var mensaje = "<b>!Error!</b> Ingrese Nacionalidad.";
+            Limpiar_focus("#nacionalidad", mensaje, "danger");
+        } else if (datos == 17) {
+            var mensaje = "<b>!Error!</b> Ingrese Profesion.";
+            Limpiar_focus("#profesion", mensaje, "danger");
+        } else if (datos == 18) {
+            var mensaje = "<b>!Error!</b> Seleccione Nivel de Formacion.";
+            Limpiar_focus("#cbx_n_formacion", mensaje, "danger");
         } else if (datos == 3) {
             Limpiar_focus("#empresa_trabaja", "<b>!Error!</b> Ingrese Empresa donde Trabaja.", "danger");
         } else if (datos == 4) {
@@ -82,17 +90,17 @@ function GuardarInscripcion() {
 
             Limpiar_focus("#ciudad_pais", "<b>!Error!</b> Ingrese Ciudad-Pais.", "danger");
         } else if (datos == 0) {
-             var for_pago = $('input:radio[name=pago]:checked').val();
-            var j = ".des_"+for_pago;
+            var for_pago = $('input:radio[name=pago]:checked').val();
+            var j = ".des_" + for_pago;
             Limpiar_focus(j, "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
-           
-            
-             $("input").val("");
-             $("textarea").val("")
-             $("#maspersona").html("");
-             p = 0;
-             $("#cbx_mas_personas").val("");
-             $("#cbx_tipo_id").val("");
+
+
+            $("input").val("");
+            $("textarea").val("")
+            $("#maspersona").html("");
+            p = 0;
+            $("#cbx_mas_personas").val("");
+            $("#cbx_tipo_id").val("");
             Continuar(for_pago);
         } else {
             Limpiar_focus("#campo_obli", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");

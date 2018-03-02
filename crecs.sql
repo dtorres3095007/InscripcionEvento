@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-03-2018 a las 17:59:25
+-- Tiempo de generación: 02-03-2018 a las 18:03:26
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 7.0.4
 
@@ -44,7 +44,11 @@ CREATE TABLE `inscripciones` (
   `pago` tinyint(1) NOT NULL DEFAULT '0',
   `correo` varchar(30) NOT NULL,
   `empresa_paga` varchar(30) NOT NULL,
-  `ciudad_pais` varchar(30) NOT NULL
+  `ciudad_pais` varchar(30) NOT NULL,
+  `nacionalidad` varchar(30) NOT NULL,
+  `profesion` varchar(30) NOT NULL,
+  `cargo` varchar(30) DEFAULT NULL,
+  `nivel_formacion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

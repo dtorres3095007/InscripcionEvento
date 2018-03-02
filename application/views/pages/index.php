@@ -21,10 +21,20 @@
                     <option value="Documento Nacional de Identidad">Documento Nacional de Identidad</option>
 
                 </select>
-                <input type="number" id="idetificacion" name="identificacion" required="" class="form-control mar-3" placeholder="Identificacion *">
 
+                <input type="number" id="idetificacion" name="identificacion" required="" class="form-control mar-3" placeholder="Identificacion *">
+                <input type="text" id="nacionalidad" name="nacionalidad" required="" class="form-control mar-3" placeholder="Nacionalidad *">
+                <input type="text" id="profesion" name="profesion" required="" class="form-control mar-3" placeholder="profesion *">
+                <select name="formacion" class="form-control mar-3" id="cbx_n_formacion" required="">
+                    <option value="">Nivel de Formacion *</option>
+                    <option value="Pregrado">Pregrado</option>
+                    <option value="Postgrado">Postgrado</option>
+                    <option value="Maestria">Maestria</option>
+                    <option value="Doctorado">Doctorado</option>
+                    <option value="Posdoctorado">Posdoctorado</option>
+                </select>
                 <select class="form-control mar-3" id="cbx_mas_personas">
-                    <option value="">¿ Inscripcion Multiple ?</option>
+                    <option value="">¿Inscripcion Multiple?</option>
                     <option value="2">2 personas -10%</option>
                     <option value="3">3 personas -15%</option>
                     <option value="4">4 personas o mas -20%</option>
@@ -35,15 +45,27 @@
                 </div>
 
                 <input type="text" id="empresa_trabaja" name="empresa_trabaja"  required="" class="form-control mar-3" placeholder="Institucion o empresa donde Trabaja *">
+
+
+                <div class=" mar-3">
+
+                    <input type="text" class="form-control" id="cargo_empresa"  list = "lst_cargos" placeholder="Cargo Empresa" name="cargo"> 
+                    <datalist id="lst_cargos">
+                        <option value="Docente">
+                        <option value="Investigador">
+                        <option value="Administrativo">
+
+                    </datalist>
+                </div>
                 <input id="correo" name="correo" type="email" required="" class="form-control mar-3"  placeholder="Correo Electronico *">
                 <input type="text" name="empresa_paga" class="form-control mar-3" placeholder="Institucion o empresa que hará el pago(si procede)">
                 <!--<input type="text" id="codigo_emp_paga"  required="" name="codigo_emp_paga" class="form-control mar-3" placeholder="NIF O CIF *">
-                --><input id="telefono" name="telefono" required="" type="number" class="form-control mar-3" placeholder="Telefono *">
+                --><input id="telefono" name="telefono" required="" type="number" class="form-control mar-3" placeholder="Telefono (Especificar el indicativo del país y ciudad) *">
                 <input type="text" id="direccion" name="direccion" required="" class="form-control mar-3" placeholder="Direccion Empresa(calle y numero) *">
                 <input type="text" id="postal" name="postal" required="" class="form-control mar-3"  placeholder="Domicilio Empresa(Codigo Postal) *">
                 <input type="text" id="ciudad_pais" name="ciudad_pais" required="" class="form-control mar-3" placeholder="Ciudad - Pais Empresa *">
                 <select name="otrotaller"  class="form-control mar-3">
-                    <option value="">¿ Asistirá a un taller ?</option>
+                    <option value="">¿Asistirá a un taller?</option>
                     <option value="COMO PUBLICAR CON IMPACTO EN REVISTAS INDEXADAS">CÓMO PUBLICAR CON IMPACTO EN REVISTAS INDEXADAS</option>
                     <option value="GESTION DE DATOS DE CITAS: WOS Y SCOPUS FRENTE A GOOGLE SCHOLAR">GESTIÓN DE DATOS DE CITAS: WOS Y SCOPUS FRENTE A GOOGLE SCHOLAR</option>
 

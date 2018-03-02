@@ -22,9 +22,16 @@ class pages extends CI_Controller {
         $apellidos = $this->input->post('apellidos');
         $identificacion = $this->input->post('identificacion');
         $tipo_identificacion = $this->input->post('tipo_identificacion');
+
+
+        $nacionalidad = $this->input->post('nacionalidad');
+        $profesion = $this->input->post('profesion');
+        $cargo = $this->input->post('cargo');
+        $nivel_formacion = $this->input->post('formacion');
+
         $empresa_trabaja = $this->input->post('empresa_trabaja');
         //$codigo_emp_paga = $this->input->post('codigo_emp_paga');
-        $codigo_emp_paga="SINCODIGO";
+        $codigo_emp_paga = "SINCODIGO";
         $telefono = $this->input->post('telefono');
         $direccion = $this->input->post('direccion');
         $postal = $this->input->post('postal');
@@ -42,16 +49,25 @@ class pages extends CI_Controller {
         } else if (empty($apellidos) || ctype_space($apellidos)) {
             echo json_encode(2);
             return;
-        }else if (empty($tipo_identificacion) || ctype_space($tipo_identificacion)) {
+        } else if (empty($tipo_identificacion) || ctype_space($tipo_identificacion)) {
             echo json_encode(13);
             return;
         } else if (empty($identificacion) || ctype_space($identificacion)) {
             echo json_encode(14);
             return;
-        }  else if ($this->pages_model->Existe_identificacion($identificacion)) {
+        } else if ($this->pages_model->Existe_identificacion($identificacion)) {
             echo json_encode(15);
             return;
-        } else if (empty($empresa_trabaja) || ctype_space($empresa_trabaja)) {
+        }else if (empty($nacionalidad) || ctype_space($nacionalidad)) {
+            echo json_encode(16);
+            return;
+        }else if (empty($profesion) || ctype_space($profesion)) {
+            echo json_encode(17);
+            return;
+        }else if (empty($nivel_formacion) || ctype_space($nivel_formacion)) {
+            echo json_encode(18);
+            return;
+        }  else if (empty($empresa_trabaja) || ctype_space($empresa_trabaja)) {
             echo json_encode(3);
             return;
         } else if (empty($codigo_emp_paga) || ctype_space($codigo_emp_paga)) {
@@ -72,7 +88,7 @@ class pages extends CI_Controller {
         } else if (empty($ciudad_pais) || ctype_space($ciudad_pais)) {
             echo json_encode(10);
             return;
-        }  else if ($valida_nombre == false) {
+        } else if ($valida_nombre == false) {
             echo json_encode(11);
             return;
         } else if ($valida_apellidos == FALSE) {
@@ -80,7 +96,7 @@ class pages extends CI_Controller {
             return;
         }
 
-        $resultado = $this->pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $tipo_identificacion);
+        $resultado = $this->pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $tipo_identificacion, $nacionalidad, $profesion, $cargo, $nivel_formacion);
         if ($nump > 0) {
             $id_inscrip = $this->pages_model->traer_ultimo_registro($identificacion);
 
@@ -88,12 +104,12 @@ class pages extends CI_Controller {
                 $n = "nombres" . $i;
                 $a = "apellidos" . $i;
                 $tiden = "tipo_identificacion" . $i;
-                $iden= "identificacion" . $i;
+                $iden = "identificacion" . $i;
                 $nombres = $this->input->post($n);
                 $apellidos = $this->input->post($a);
                 $identificacion = $this->input->post($iden);
                 $tipo_identificacion = $this->input->post($tiden);
-                $resultado = $this->pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip,$identificacion,$tipo_identificacion);
+                $resultado = $this->pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion);
             }
         }
         echo json_encode($resultado);

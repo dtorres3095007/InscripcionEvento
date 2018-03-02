@@ -13,7 +13,7 @@ class pages_model extends CI_Model {
         $this->load->database();
     }
 
-    public function guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $identificaciontipo) {
+    public function guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $identificaciontipo, $nacionalidad, $profesion, $cargo, $nivel_formacion) {
         $this->db->insert($this->inscripciones_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
@@ -30,12 +30,16 @@ class pages_model extends CI_Model {
             "ciudad_pais" => $ciudad_pais,
             "identificacion" => $identificacion,
             "tipo_identificacion" => $identificaciontipo,
+            "nacionalidad" => $nacionalidad,
+            "profesion" => $profesion,
+            "cargo" => $cargo,
+            "nivel_formacion" => $nivel_formacion,
         ));
 
         return 0;
     }
 
-    public function guardar_multiple($nombres, $apellidos, $id_inscrip,$identificacion,$identificaciontipo) {
+    public function guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $identificaciontipo) {
         $this->db->insert($this->inscripciones_mul_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
@@ -56,7 +60,8 @@ class pages_model extends CI_Model {
         $row = $query->row();
         return $row->id;
     }
-     public function Existe_identificacion($identificacion) {
+
+    public function Existe_identificacion($identificacion) {
         $this->db->select('count(*) as cantidad');
         $this->db->from($this->inscripciones_tabla);
         $this->db->where('identificacion', $identificacion);
