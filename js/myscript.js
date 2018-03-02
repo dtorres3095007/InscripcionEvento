@@ -44,7 +44,7 @@ function GuardarInscripcion() {
         contentType: false,
         processData: false
     }).done(function (datos) {
-        alert(datos)
+   
         if (datos == 1) {
 
             Limpiar_focus("#nombres", "<b>!Error!</b> Ingrese Nombres.", "danger");
