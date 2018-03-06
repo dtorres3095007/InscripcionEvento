@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class pages_model extends CI_Model {
+class Pages_model extends CI_Model {
 
     var $inscripciones_tabla = "inscripciones";
     var $inscripciones_mul_tabla = "inscripciones_multiples";

@@ -2,11 +2,11 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class pages extends CI_Controller {
+class Pages extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('pages_model');
+        $this->load->model('Pages_model');
     }
 
     public function index() {
@@ -55,9 +55,6 @@ class pages extends CI_Controller {
         } else if (empty($identificacion) || ctype_space($identificacion)) {
             echo json_encode(14);
             return;
-        } else if ($this->pages_model->Existe_identificacion($identificacion)) {
-            echo json_encode(15);
-            return;
         }else if (empty($nacionalidad) || ctype_space($nacionalidad)) {
             echo json_encode(16);
             return;
@@ -96,9 +93,9 @@ class pages extends CI_Controller {
             return;
         }
 
-        $resultado = $this->pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $tipo_identificacion, $nacionalidad, $profesion, $cargo, $nivel_formacion);
+        $resultado = $this->Pages_model->guardar($nombres, $apellidos, $empresa_trabaja, $correo, $empresa_paga, $codigo_emp_paga, $telefono, $direccion, $postal, $ciudad_pais, $otrotaller, $comentarios, $id_inscrip, $identificacion, $tipo_identificacion, $nacionalidad, $profesion, $cargo, $nivel_formacion);
         if ($nump > 0) {
-            $id_inscrip = $this->pages_model->traer_ultimo_registro($identificacion);
+            $id_inscrip = $this->Pages_model->traer_ultimo_registro($identificacion);
 
             for ($i = 0; $i < $nump; $i++) {
                 $n = "nombres" . $i;
@@ -109,7 +106,7 @@ class pages extends CI_Controller {
                 $apellidos = $this->input->post($a);
                 $identificacion = $this->input->post($iden);
                 $tipo_identificacion = $this->input->post($tiden);
-                $resultado = $this->pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion);
+                $resultado = $this->Pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion);
             }
         }
         echo json_encode($resultado);

@@ -19,7 +19,8 @@ $(document).ready(function () {
 });
 
 function Traer_Server() {
-    return "localhost";
+    //return "inscripcionescrecs.cuc.edu.co/";
+    return "localhost/InscripcionEvento/"
 }
 
 $("#guardarinscripcion").submit(function () {
@@ -36,7 +37,7 @@ function GuardarInscripcion() {
     formData.append("nump", p);
     //  Enviamos el formulario al controlador     
     $.ajax({
-        url: "http://" + server + "/InscripcionEvento/index.php/pages/GuardarInscripcion",
+        url: "http://" + server + "index.php/pages/GuardarInscripcion",
         type: "post",
         dataType: "html",
         data: formData,
