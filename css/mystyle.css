@@ -21,9 +21,20 @@
     cursor: pointer;
 }
 body{
-    background-image: url(http://localhost/InscripcionEvento/imagenes/img_ins.png);
+   
     background-repeat: no-repeat;
-    background-position-x: 85%;
-    background-position-y: 450px;
-    background-size: 20%;
+    background-position-x: 80%;
+    background-position-y: 430px;
+    background-size: 15%;
+}
+.modal-header{
+    background-color: #009933;
+    
+}
+.modal-header h3,.modal-header button{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}.modal-backdrop.in{
+    display: none;
 }

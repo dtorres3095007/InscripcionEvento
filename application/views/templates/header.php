@@ -5,5 +5,5 @@
        -->
         <link href="<?php echo base_url(); ?>/css/mystyle.css" rel="stylesheet"/>
     </head>
-    <body>
+    <body style=" background-image: url(<?php echo base_url(); ?>/imagenes/Reservas.png);">
 

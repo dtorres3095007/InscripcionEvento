@@ -3,6 +3,7 @@ var server = "localhost";
 var p = 0;
 $(document).ready(function () {
     server = Traer_Server();
+
     $("#cbx_mas_personas").change(function () {
         var n = $(this).val();
         if (n.length != 0) {
@@ -13,7 +14,11 @@ $(document).ready(function () {
         }
 
     });
+    $("#cbx_metodo_pago").change(function () {
+        var n = $(this).val();
+        Continuar(n);
 
+    });
     ActivarQuitarEspacios();
 
 });
@@ -91,9 +96,8 @@ function GuardarInscripcion() {
 
             Limpiar_focus("#ciudad_pais", "<b>!Error!</b> Ingrese Ciudad-Pais.", "danger");
         } else if (datos == 0) {
-            var for_pago = $('input:radio[name=pago]:checked').val();
-            var j = ".des_" + for_pago;
-            Limpiar_focus(j, "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Puede Proceder Con el Pago.", "success");
+         
+            Limpiar_focus(".des_", "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Su inscripcion es valida una vez realize el pago.", "success");
 
 
             $("input").val("");
@@ -102,7 +106,8 @@ function GuardarInscripcion() {
             p = 0;
             $("#cbx_mas_personas").val("");
             $("#cbx_tipo_id").val("");
-            Continuar(for_pago);
+            $("#myModal_pago").modal("show");
+         
         } else {
             Limpiar_focus("#campo_obli", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");
         }
@@ -112,11 +117,13 @@ function GuardarInscripcion() {
 }
 
 function Continuar(pago) {
-    $("#Incr").hide("slow");
+   
     if (pago == 1) {
         $("#pagar").show("slow");
+        $("#pagar_banco").hide("slow");
     } else {
         $("#pagar_banco").show("slow");
+         $("#pagar").hide("slow");
     }
 }
 function Regresar() {
