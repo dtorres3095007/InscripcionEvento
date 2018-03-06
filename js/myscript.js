@@ -3,7 +3,7 @@ var server = "localhost";
 var p = 0;
 $(document).ready(function () {
     server = Traer_Server();
-
+  
     $("#cbx_mas_personas").change(function () {
         var n = $(this).val();
         if (n.length != 0) {
@@ -24,7 +24,7 @@ $(document).ready(function () {
 });
 
 function Traer_Server() {
-    //return "inscripcionescrecs.cuc.edu.co/";
+   // return "inscripcionescrecs.cuc.edu.co/";
     return "localhost/InscripcionEvento/"
 }
 

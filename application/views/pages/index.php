@@ -233,9 +233,10 @@
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-
+                            <p>Realizar transferencia bancaria o consignación a:</p>
                              <p>Empresa: CORPORACION UNIVERSIDAD DE LA COSTA - CUC</p>
                             <p>Cuenta Ahorros: 024100002351</p>
+                            <p>Banco: DAVIVIENDA</p>
                             <button type="button" class="btn btn-primary"data-dismiss="modal"><span class="glyphicon glyphicon-repeat"></span> Terminar</button>
 
 
