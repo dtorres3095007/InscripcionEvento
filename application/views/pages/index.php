@@ -167,7 +167,19 @@
 
 
 </div>
+<div class="alert alert-warning col-md-4 mar-3" >
+   
+        <p><b>Ya Cuento con una Inscripcion, ir al pago:</b></p>  
+        <div class="form-group" >
 
+            <div class="input-group">
+                <input id="numero_id_buscar" class="form-control" id="buscar_por_cc" required="" type="number" placeholder="Numero Identificacion">
+                <span class="input-group-addon glyphicon glyphicon-search red" id="buscar_inscri"></span>
+               
+            </div>
+        </div>
+ <div class="alert alert-danger oculto" id="ee">...</div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="myModal_pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" backdrop="false">
     <div class="modal-dialog" role="document">
@@ -177,24 +189,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h3 class="modal-title" id="exampleModalLabel"><span class="glyphicon glyphicon-usd"></span>PAGAR INSCRIPCION</h3>
-                
+
             </div>
             <div class="modal-body">
-                <div class="des_"></div>
+                <div class="des_ alert alert-success oculto"></div>
                 <span>Metodos de Pago: </span>
                 <select  class="form-control" name="pago" id="cbx_metodo_pago">
                     <option value="1">Via PayPal (PAGOS INTERNACIONALES)</option>
                     <option value="2">Transferencia Bancaria (PAGOS NACIONALES)</option>
 
                 </select>
-              
+
 
                 <div class="mar-3" id="pagar" >
 
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-                          
+
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick">
                                 <input type="hidden" name="hosted_button_id" value="FYSVSKSHFPLEE">
@@ -234,7 +246,7 @@
 
                         <div class="panel-body">
                             <p>Realizar transferencia bancaria o consignación a:</p>
-                             <p>Empresa: CORPORACION UNIVERSIDAD DE LA COSTA - CUC</p>
+                            <p>Empresa: CORPORACION UNIVERSIDAD DE LA COSTA - CUC</p>
                             <p>Cuenta Ahorros: 024100002351</p>
                             <p>Banco: DAVIVIENDA</p>
                             <button type="button" class="btn btn-primary"data-dismiss="modal"><span class="glyphicon glyphicon-repeat"></span> Terminar</button>
@@ -248,3 +260,5 @@
         </div>
     </div>
 </div>
+
+

@@ -24,8 +24,8 @@ body{
    
     background-repeat: no-repeat;
     background-position-x: 80%;
-    background-position-y: 430px;
-    background-size: 15%;
+    background-position-y: 560px;
+    background-size: 8%;
 }
 .modal-header{
     background-color: #009933;
@@ -37,4 +37,8 @@ body{
     font-size: 15px;
 }.modal-backdrop.in{
     display: none;
+}
+.red{
+    color: white;
+    background-color: #009933;
 }

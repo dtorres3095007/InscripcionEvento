@@ -1,9 +1,33 @@
-
+var idioma = {
+    "sProcessing": "Procesando...",
+    "sLengthMenu": "Mostrar _MENU_ registros",
+    "sZeroRecords": "No se encontraron resultados",
+    "sEmptyTable": "Ningún dato disponible en esta tabla",
+    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix": "",
+    "sSearch": "Buscar:",
+    "sUrl": "",
+    "sInfoThousands": ",",
+    "sLoadingRecords": "Ningún dato disponible en esta tabla...",
+    "oPaginate": {
+        "sFirst": "Primero",
+        "sLast": "Último",
+        "sNext": "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+}
 var server = "localhost";
 var p = 0;
 $(document).ready(function () {
     server = Traer_Server();
-  
+    Listar_Inscripciones();
+    // prueba(2);
     $("#cbx_mas_personas").change(function () {
         var n = $(this).val();
         if (n.length != 0) {
@@ -24,13 +48,23 @@ $(document).ready(function () {
 });
 
 function Traer_Server() {
-   // return "inscripcionescrecs.cuc.edu.co/";
+    // return "inscripcionescrecs.cuc.edu.co/";
     return "localhost/InscripcionEvento/"
 }
 
 $("#guardarinscripcion").submit(function () {
 
     GuardarInscripcion();
+
+    return false;
+});
+$("#buscar_inscri").click(function () {
+    var cc = $("#numero_id_buscar").val();
+    if (cc.length == 0) {
+        Limpiar_focus("#ee", "<b>!Error!</b> Ingrese Numero de Identificacion.", "danger");
+    } else {
+        Buscar_Inscripcion(cc);
+    }
 
     return false;
 });
@@ -50,66 +84,67 @@ function GuardarInscripcion() {
         contentType: false,
         processData: false
     }).done(function (datos) {
-   
+
         if (datos == 1) {
 
-            Limpiar_focus("#nombres", "<b>!Error!</b> Ingrese Nombres.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Nombres.", "danger");
 
         } else if (datos == 2) {
-            Limpiar_focus("#apellidos", "<b>!Error!</b> Ingrese Apellidos.", "danger");
-        }else if (datos == 11) {
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Apellidos.", "danger");
+        } else if (datos == 11) {
 
-            Limpiar_focus("#nombres", "<b>!Error!</b> El Campo Nombres No puede Contener Numeros.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> El Campo Nombres No puede Contener Numeros.", "danger");
 
         } else if (datos == 12) {
-            Limpiar_focus("#apellidos", "<b>!Error!</b> El Campo Apellidos No puede Contener Numeros.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> El Campo Apellidos No puede Contener Numeros.", "danger");
         } else if (datos == 13) {
-            Limpiar_focus("#cbx_tipo_id", "<b>!Error!</b> Seleccione Tipo Idetificacion.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Seleccione Tipo Idetificacion.", "danger");
         } else if (datos == 14) {
-            Limpiar_focus("#idetificacion", "<b>!Error!</b> Ingrese  Idetificacion.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese  Idetificacion.", "danger");
         } else if (datos == 15) {
             var mensaje = "<b>!Error!</b> El Numero de Identificacion " + $("#idetificacion").val() + " Ya Tiene Una Inscrpcion.";
-            Limpiar_focus("#idetificacion", mensaje, "danger");
+            Limpiar_focus("#mensaje_error_bien", mensaje, "danger");
         } else if (datos == 16) {
             var mensaje = "<b>!Error!</b> Ingrese Nacionalidad.";
-            Limpiar_focus("#nacionalidad", mensaje, "danger");
+            Limpiar_focus("#mensaje_error_bien", mensaje, "danger");
         } else if (datos == 17) {
             var mensaje = "<b>!Error!</b> Ingrese Profesion.";
-            Limpiar_focus("#profesion", mensaje, "danger");
+            Limpiar_focus("#mensaje_error_bien", mensaje, "danger");
         } else if (datos == 18) {
             var mensaje = "<b>!Error!</b> Seleccione Nivel de Formacion.";
-            Limpiar_focus("#cbx_n_formacion", mensaje, "danger");
+            Limpiar_focus("#mensaje_error_bien", mensaje, "danger");
         } else if (datos == 3) {
-            Limpiar_focus("#empresa_trabaja", "<b>!Error!</b> Ingrese Empresa donde Trabaja.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Empresa donde Trabaja.", "danger");
         } else if (datos == 4) {
-            Limpiar_focus("#codigo_emp_paga", "<b>!Error!</b> Ingrese NIF O CIF.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese NIF O CIF.", "danger");
         } else if (datos == 5) {
-            Limpiar_focus("#telefono", "<b>!Error!</b> Ingrese Telefono.");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Telefono.");
         } else if (datos == 6) {
-            Limpiar_focus("#direccion", "<b>!Error!</b> Ingrese Direccion.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Direccion.", "danger");
         } else if (datos == 7) {
-            Limpiar_focus("#postal", "<b>!Error!</b> Ingrese Codigo Postal.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Codigo Postal.", "danger");
         } else if (datos == 8) {
 
-            Limpiar_focus("#correo", "<b>!Error!</b> Ingrese Correo.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Correo.", "danger");
         } else if (datos == 10) {
 
-            Limpiar_focus("#ciudad_pais", "<b>!Error!</b> Ingrese Ciudad-Pais.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Ingrese Ciudad-Pais.", "danger");
         } else if (datos == 0) {
-         
+
             Limpiar_focus(".des_", "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Su inscripcion es valida una vez realize el pago.", "success");
 
-
+            $("#mensaje_error_bien").hide("slow");
             $("input").val("");
             $("textarea").val("")
             $("#maspersona").html("");
             p = 0;
             $("#cbx_mas_personas").val("");
+            $("#cbx_n_formacion").val("");
             $("#cbx_tipo_id").val("");
             $("#myModal_pago").modal("show");
-         
+
         } else {
-            Limpiar_focus("#campo_obli", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");
+            Limpiar_focus("#mensaje_error_bien", "<b>!Error!</b> Error al Guardar la Inscripcion.", "danger");
         }
 
     });
@@ -117,13 +152,13 @@ function GuardarInscripcion() {
 }
 
 function Continuar(pago) {
-   
+
     if (pago == 1) {
         $("#pagar").show("slow");
         $("#pagar_banco").hide("slow");
     } else {
         $("#pagar_banco").show("slow");
-         $("#pagar").hide("slow");
+        $("#pagar").hide("slow");
     }
 }
 function Regresar() {
@@ -135,7 +170,7 @@ function MasPersona() {
     if (p == 0) {
         $("#maspersona").append("<br>");
     }
-    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><input type="text"  name="nombres' + p + '" required="" class="form-control mar-3" placeholder="Nombres"><input type="text"  name="apellidos' + p + '" required="" class="form-control mar-3" placeholder="Apellidos"> <select class="form-control mar-3" required=""  name="tipo_identificacion' + p + '"><option value="">Seleccione Tipo Identificacion *</option><option value="Cedula de Ciudadania">Cédula de Ciudadania</option><option value="Cedula de Extranjería">Cédula de Extranjería</option><option value="Documento Nacional de Identidad">Documento Nacional de Identidad</option></select><input type="number"  name="identificacion' + p + '" required="" class="form-control mar-3" placeholder="Identificacion *"></div></div>');
+    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><div class="form-group"><div class="input-group"><input type="text"  name="nombres' + p + '" required="" class="form-control" placeholder="Nombres"><span class="input-group-addon">-</span><input type="text"  name="apellidos' + p + '" required="" class="form-control" placeholder="Apellidos"> </div></div><div class="form-group"><div class="input-group"> <input list= "lst_tipo_id" placeholder="Tipo Identificacion *" class="form-control" required=""  name="tipo_identificacion' + p + '"><span class="input-group-addon">-</span><input type="number"  name="identificacion' + p + '" required="" class="form-control" placeholder="Identificacion *"></div></div></div></div>');
     p++;
     if (p >= 4) {
         $("#masperso").remove();
@@ -151,10 +186,10 @@ function CrearNpersonas(n) {
     ActivarQuitarEspacios();
 }
 function Limpiar_focus(sele, mensaje, tipo_me) {
-    $("#mensaje_error_bien").remove();
-    $(sele).after('<div class="mar-3 alert alert-' + tipo_me + '" id="mensaje_error_bien">...</div>');
-    $("#mensaje_error_bien").html(mensaje);
-    $("#mensaje_error_bien").show("slow");
+
+
+    $(sele).html(mensaje);
+    $(sele).show("slow");
     $(sele).val("");
     $(sele).focus();
 }
@@ -170,5 +205,62 @@ function ActivarQuitarEspacios() {
         valor = valor.trim();
         $(this).val(valor.toUpperCase());
 
+    });
+}
+function Buscar_Inscripcion(cc) {
+    $.ajax({
+        url: "http://" + server + "index.php/pages/Buscar_Incripcion",
+        dataType: "json",
+        data: {
+            identificacion: cc
+        },
+        type: "post",
+    }).done(function (datos) {
+        if (datos == true) {
+            $("#myModal_pago").modal("show");
+            Limpiar_focus(".des_", "<b>!Bien!</b>  Inscripcion Encontrada, Su inscripcion es valida una vez realize el pago.", "success");
+            $("#ee").hide("slow");
+            $("#mensaje_error_bien").hide("slow");
+        } else {
+            Limpiar_focus("#ee", "<b>!Error!</b> La Inscripcion No se Encuentra Registrada.", "danger");
+        }
+    });
+}
+function Listar_Inscripciones() {
+
+
+    var myTable = $("#tabla_inscripciones").DataTable({
+        "destroy": true,
+        "ajax": {
+            url: "http://" + server + "index.php/pages/Listar_Inscripciones",
+            dataType: "json",
+            type: "post",
+        }, "columns": [
+            {"data": "nombres"},
+            {"data": "apellidos"},
+            {"data": "tipo_identificacion"},
+            {"data": "identificacion"},
+            {"data": "telefono"},
+            {"data": "correo"},
+            {"data": "nacionalidad"},
+            {"data": "empresa_trabaja"},
+            {"data": "fecha_registro"},
+        ],
+        "language": idioma,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
+}
+function prueba(cc) {
+    alert(cc)
+    $.ajax({
+        url: "http://" + server + "index.php/pages/Listar_Inscripciones",
+        dataType: "json",
+        type: "post",
+    }).done(function (datos) {
+        alert(datos)
     });
 }

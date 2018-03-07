@@ -9,10 +9,15 @@ class Pages extends CI_Controller {
         $this->load->model('Pages_model');
     }
 
-    public function index() {
+    public function index($page="1") {
         //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
         $this->load->view('templates/header.php');
-        $this->load->view('pages/index.php');
+        if ($page == "cuclist2018") {
+          $this->load->view('pages/Listar_inscripciones.php');
+        } else {
+             $this->load->view('pages/index.php');
+        }
+
         $this->load->view('templates/footer.php');
     }
 
@@ -43,6 +48,7 @@ class Pages extends CI_Controller {
         $ciudad_pais = $this->input->post('ciudad_pais');
         $valida_nombre = $this->solo_letras($nombres);
         $valida_apellidos = $this->solo_letras($apellidos);
+        $existe = $this->Pages_model->Existe_identificacion($identificacion);
         if (empty($nombres) || ctype_space($nombres)) {
             echo json_encode(1);
             return;
@@ -55,16 +61,19 @@ class Pages extends CI_Controller {
         } else if (empty($identificacion) || ctype_space($identificacion)) {
             echo json_encode(14);
             return;
-        }else if (empty($nacionalidad) || ctype_space($nacionalidad)) {
+        }else if ($existe==true) {
+            echo json_encode(15);
+            return;
+        } else if (empty($nacionalidad) || ctype_space($nacionalidad)) {
             echo json_encode(16);
             return;
-        }else if (empty($profesion) || ctype_space($profesion)) {
+        } else if (empty($profesion) || ctype_space($profesion)) {
             echo json_encode(17);
             return;
-        }else if (empty($nivel_formacion) || ctype_space($nivel_formacion)) {
+        } else if (empty($nivel_formacion) || ctype_space($nivel_formacion)) {
             echo json_encode(18);
             return;
-        }  else if (empty($empresa_trabaja) || ctype_space($empresa_trabaja)) {
+        } else if (empty($empresa_trabaja) || ctype_space($empresa_trabaja)) {
             echo json_encode(3);
             return;
         } else if (empty($codigo_emp_paga) || ctype_space($codigo_emp_paga)) {
@@ -123,6 +132,25 @@ class Pages extends CI_Controller {
         }
         //si estoy aqui es que todos los caracteres son validos 
         return true;
+    }
+
+    public function Buscar_Incripcion() {
+        $identificacion = $this->input->post('identificacion');
+        $existe = $this->Pages_model->Existe_identificacion($identificacion);
+        echo json_encode($existe);
+        return true;
+    }
+
+    function Listar_Inscripciones() {
+        $inscripciones = array();
+        $datos = $this->Pages_model->Listar();
+        foreach ($datos as $row) {
+            //   $row["indice"] = $i;
+            $inscripciones["data"][] = $row;
+            //   $i++;
+        }
+
+        echo json_encode($inscripciones);
     }
 
 }

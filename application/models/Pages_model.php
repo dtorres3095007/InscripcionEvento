@@ -75,4 +75,12 @@ class Pages_model extends CI_Model {
         }
     }
 
+    public function Listar() {
+        $this->db->select("*");
+        $this->db->from($this->inscripciones_tabla);
+ 
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }
