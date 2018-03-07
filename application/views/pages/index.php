@@ -168,17 +168,17 @@
 
 </div>
 <div class="alert alert-warning col-md-4 mar-3" >
-   
-        <p><b>Ya Cuento con una Inscripcion, ir al pago:</b></p>  
-        <div class="form-group" >
 
-            <div class="input-group">
-                <input id="numero_id_buscar" class="form-control" id="buscar_por_cc" required="" type="number" placeholder="Numero Identificacion">
-                <span class="input-group-addon glyphicon glyphicon-search red" id="buscar_inscri"></span>
-               
-            </div>
+    <p><b>Ya Cuento con una Inscripcion, ir al pago:</b></p>  
+    <div class="form-group" >
+
+        <div class="input-group">
+            <input id="numero_id_buscar" class="form-control" id="buscar_por_cc" required="" type="number" placeholder="Numero Identificacion">
+            <span class="input-group-addon glyphicon glyphicon-search red" id="buscar_inscri"></span>
+
         </div>
- <div class="alert alert-danger oculto" id="ee">...</div>
+    </div>
+    <div class="alert alert-danger oculto" id="ee">...</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal_pago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" backdrop="false">
@@ -209,28 +209,23 @@
 
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="hosted_button_id" value="FYSVSKSHFPLEE">
-
                                 <table>
-
-                                    <tr><td><input type="hidden" name="on0" value="EVENTOS" >EVENTOS</td></tr><tr><td><select name="os0" class="form-control">
-
+                                    <tr><td><input type="hidden" name="on0" value="PRECIOS DEL EVENTO CRECS" PRECIOS DEL EVENTO CRECS</td></tr><tr><td><select name="os0" class="form-control">>
                                                 <option value="INSCRIPCION">INSCRIPCION $100.00 USD</option>
-
                                                 <option value="INSCRIPCION + TALLER">INSCRIPCION + TALLER $150.00 USD</option>
-
+                                                <option value="INSCRICION 2 PERSONAS">INSCRIPCION 2 PERSONAS $180.00 USD</option>
+                                                <option value="INSCRIPCION 3 PERSONAS">INSCRIPCION 3 PERSONAS $255.00 USD</option>
+                                                <option value="INSCRIPCION 4  PERSONAS O MAS">INSCRIPCION 4  PERSONAS O MAS $320.00 USD</option>
+                                                <option value="INSCRICION 2 PERSONAS + TALLER">INSCRIPCION 2 PERSONAS + TALLER $280.00 USD</option>
+                                                <option value="INSCRICION 3 PERSONAS + TALLER">INSCRIPCION 3 PERSONAS + TALLER $405.00 USD</option>
+                                                <option value="INSCRIPCION 4  PERSONAS O MAS + TALLER">INSCRIPCION 4  PERSONAS O MAS + TALLER $520.00 USD</option>
                                             </select> </td></tr>
-
                                 </table>
-                                <br>
                                 <input type="hidden" name="currency_code" value="USD">
-
-                   <!-- <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                                -->
-                                <button type="submit" alt="PayPal - The safer, easier way to pay online!" class="btn btn-primary">Pagar Ahora</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-repeat"></span> Cancelar</button>
-                                <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-
+                                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                                       ">
+                                <input  class="btn btn-primary mar-3" border="0" type="submit" value="Pagar Ahora">
+                             
                             </form>
 
                         </div>

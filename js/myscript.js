@@ -49,7 +49,7 @@ $(document).ready(function () {
 
 function Traer_Server() {
     // return "inscripcionescrecs.cuc.edu.co/";
-    return "localhost/InscripcionEvento/"
+    return "localhost/InscripcionEvento/";
 }
 
 $("#guardarinscripcion").submit(function () {
