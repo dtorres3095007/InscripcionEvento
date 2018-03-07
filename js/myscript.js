@@ -26,7 +26,7 @@ var server = "localhost";
 var p = 0;
 $(document).ready(function () {
     server = Traer_Server();
-    Listar_Inscripciones();
+
     // prueba(2);
     $("#cbx_mas_personas").change(function () {
         var n = $(this).val();

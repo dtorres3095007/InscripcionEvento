@@ -16,12 +16,15 @@
 
 
 <script src="<?php echo base_url(); ?>/js/myscript.js"></script>
-<script>
-    $(document).ready(function () {
-        
-        
-    });
-</script>
+<?php if ($title == "cuclist2018") { ?> 
+    <script>
+        $(document).ready(function () {
+    Listar_Inscripciones();
+
+        });
+    </script>
+<?php } ?>
+
 </body>
 </html>
 

@@ -13,9 +13,11 @@ class Pages extends CI_Controller {
         //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
         $this->load->view('templates/header.php');
         if ($page == "cuclist2018") {
-          $this->load->view('pages/Listar_inscripciones.php');
+              $data['title'] = "cuclist2018";
+          $this->load->view('pages/Listar_inscripciones.php',$data);
         } else {
-             $this->load->view('pages/index.php');
+              $data['title'] = ucfirst("xx");
+             $this->load->view('pages/index.php',$data);
         }
 
         $this->load->view('templates/footer.php');
