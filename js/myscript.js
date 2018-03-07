@@ -236,6 +236,7 @@ function Listar_Inscripciones() {
             dataType: "json",
             type: "post",
         }, "columns": [
+            {"data": "id"},
             {"data": "nombres"},
             {"data": "apellidos"},
             {"data": "tipo_identificacion"},
@@ -244,7 +245,7 @@ function Listar_Inscripciones() {
             {"data": "correo"},
             {"data": "nacionalidad"},
             {"data": "empresa_trabaja"},
-            {"data": "fecha_registro"},
+            
         ],
         "language": idioma,
         dom: 'Bfrtip',
