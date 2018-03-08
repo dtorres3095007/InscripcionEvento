@@ -42,3 +42,12 @@ body{
     color: white;
     background-color: #009933;
 }
+.dinamica-col a{
+    text-decoration: none;
+    
+}
+thead{
+    color: #666666;
+text-align: center;
+   font-weight: bold;
+}

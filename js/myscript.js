@@ -24,10 +24,20 @@ var idioma = {
 }
 var server = "localhost";
 var p = 0;
+var oc=0;
 $(document).ready(function () {
     server = Traer_Server();
 
     // prueba(2);
+    $("#mostrar_ocultar").click(function (){
+        if (oc ==0){
+          $("#tabla-dinam tbody").show("slow");
+          oc=1;
+        }else{
+            $("#tabla-dinam tbody").hide("slow");
+          oc=0;
+        }
+    })
     $("#cbx_mas_personas").change(function () {
         var n = $(this).val();
         if (n.length != 0) {
@@ -236,7 +246,7 @@ function Listar_Inscripciones() {
             dataType: "json",
             type: "post",
         }, "columns": [
-            {"data": "id"},
+            {"data": "fecha_registro"},
             {"data": "nombres"},
             {"data": "apellidos"},
             {"data": "tipo_identificacion"},
@@ -244,14 +254,40 @@ function Listar_Inscripciones() {
             {"data": "telefono"},
             {"data": "correo"},
             {"data": "nacionalidad"},
+            {"data": "profesion"},
+            {"data": "nivel_formacion"},
             {"data": "empresa_trabaja"},
-            
+            {"data": "cargo"},
+            {"data": "direccion"},
+            {"data": "codigo_postal"},
+            {"data": "ciudad_pais"},
+            {"data": "otro_taller"},
+            {"data": "comentarios"},
         ],
         "language": idioma,
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
+    });
+    myTable.column(0).visible(false);
+    myTable.column(8).visible(false);
+    myTable.column(9).visible(false);
+    myTable.column(11).visible(false);
+    myTable.column(12).visible(false);
+    myTable.column(13).visible(false);
+    myTable.column(14).visible(false);
+    myTable.column(15).visible(false);
+    myTable.column(16).visible(false);
+
+    $('a.toggle-vis').on('click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = myTable.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
     });
 
 }
