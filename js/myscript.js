@@ -58,8 +58,8 @@ $(document).ready(function () {
 });
 
 function Traer_Server() {
-    // return "inscripcionescrecs.cuc.edu.co/";
-    return "localhost/InscripcionEvento/";
+    // return "http://inscripcionescrecs.cuc.edu.co/";
+   return "localhost/InscripcionEvento/";
 }
 
 $("#guardarinscripcion").submit(function () {
@@ -86,7 +86,7 @@ function GuardarInscripcion() {
     formData.append("nump", p);
     //  Enviamos el formulario al controlador     
     $.ajax({
-        url: "http://" + server + "index.php/pages/GuardarInscripcion",
+        url: server + "index.php/pages/GuardarInscripcion",
         type: "post",
         dataType: "html",
         data: formData,
@@ -219,7 +219,7 @@ function ActivarQuitarEspacios() {
 }
 function Buscar_Inscripcion(cc) {
     $.ajax({
-        url: "http://" + server + "index.php/pages/Buscar_Incripcion",
+        url: server + "index.php/pages/Buscar_Incripcion",
         dataType: "json",
         data: {
             identificacion: cc
@@ -242,7 +242,7 @@ function Listar_Inscripciones() {
     var myTable = $("#tabla_inscripciones").DataTable({
         "destroy": true,
         "ajax": {
-            url: "http://" + server + "index.php/pages/Listar_Inscripciones",
+            url:  server + "index.php/pages/Listar_Inscripciones",
             dataType: "json",
             type: "post",
         }, "columns": [
@@ -294,7 +294,7 @@ function Listar_Inscripciones() {
 function prueba(cc) {
     alert(cc)
     $.ajax({
-        url: "http://" + server + "index.php/pages/Listar_Inscripciones",
+        url:  server + "index.php/pages/Listar_Inscripciones",
         dataType: "json",
         type: "post",
     }).done(function (datos) {

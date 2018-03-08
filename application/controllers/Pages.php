@@ -9,20 +9,34 @@ class Pages extends CI_Controller {
         $this->load->model('Pages_model');
     }
 
-    public function index($page="1") {
+    public function index($page = "1") {
         //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
         $this->load->view('templates/header.php');
         if ($page == "cuclist2018") {
-              $data['title'] = "cuclist2018";
-          $this->load->view('pages/Listar_inscripciones.php',$data);
+            $data['title'] = "cuclist2018";
+            $this->load->view('pages/Listar_inscripciones.php', $data);
         } else {
-              $data['title'] = ucfirst("xx");
-             $this->load->view('pages/index.php',$data);
+            $data['title'] = ucfirst("xx");
+            $this->load->view('pages/index.php', $data);
         }
 
         $this->load->view('templates/footer.php');
     }
 
+    public function Cancelado() {
+        //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
+        $data['title'] = ucfirst("cancelado");
+        $this->load->view('templates/header.php');
+        $this->load->view('pages/Cancelado_pago.php', $data);
+        $this->load->view('templates/footer.php');
+    }
+ public function Exitoso() {
+        //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
+        $data['title'] = ucfirst("cancelado");
+        $this->load->view('templates/header.php');
+        $this->load->view('pages/Exitoso_pago.php', $data);
+        $this->load->view('templates/footer.php');
+    }
     public function GuardarInscripcion() {
         $nump = $this->input->post('nump');
         $nombres = $this->input->post('nombres');
@@ -63,7 +77,7 @@ class Pages extends CI_Controller {
         } else if (empty($identificacion) || ctype_space($identificacion)) {
             echo json_encode(14);
             return;
-        }else if ($existe==true) {
+        } else if ($existe == true) {
             echo json_encode(15);
             return;
         } else if (empty($nacionalidad) || ctype_space($nacionalidad)) {
