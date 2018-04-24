@@ -59,7 +59,7 @@ $(document).ready(function () {
 
 function Traer_Server() {
     // return "http://inscripcionescrecs.cuc.edu.co/";
-   return "localhost/InscripcionEvento/";
+   return "http://localhost/InscripcionEvento/";
 }
 
 $("#guardarinscripcion").submit(function () {
@@ -144,8 +144,7 @@ function GuardarInscripcion() {
             Limpiar_focus(".des_", "<b>!Bien!</b>  Inscripcion Guardada Con Exito, Su inscripcion es valida una vez realize el pago.", "success");
 
             $("#mensaje_error_bien").hide("slow");
-            $("input").val("");
-            $("textarea").val("")
+            $("#guardarinscripcion").get(0).reset();
             $("#maspersona").html("");
             p = 0;
             $("#cbx_mas_personas").val("");
@@ -180,7 +179,7 @@ function MasPersona() {
     if (p == 0) {
         $("#maspersona").append("<br>");
     }
-    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><div class="form-group"><div class="input-group"><input type="text"  name="nombres' + p + '" required="" class="form-control" placeholder="Nombres"><span class="input-group-addon">-</span><input type="text"  name="apellidos' + p + '" required="" class="form-control" placeholder="Apellidos"> </div></div><div class="form-group"><div class="input-group"> <input list= "lst_tipo_id" placeholder="Tipo Identificacion *" class="form-control" required=""  name="tipo_identificacion' + p + '"><span class="input-group-addon">-</span><input type="number"  name="identificacion' + p + '" required="" class="form-control" placeholder="Identificacion *"></div></div></div></div>');
+    $("#maspersona").append('<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Datos Persona ' + (p + 1) + '</h3></div><div class="panel-body"><div class="form-group"><div class="input-group"><input type="text"  name="nombres' + p + '" required="" class="form-control" placeholder="Nombres"><span class="input-group-addon">-</span><input type="text"  name="apellidos' + p + '" required="" class="form-control" placeholder="Apellidos"> </div></div><div class="form-group"><div class="input-group"> <input list= "lst_tipo_id" placeholder="Tipo Identificacion *" class="form-control" required=""  name="tipo_identificacion' + p + '"><span class="input-group-addon">-</span><input type="number"  name="identificacion' + p + '" required="" class="form-control" placeholder="Identificacion *"></div><select name="otrotaller' + p + '"  class="form-control mar-3"><option value="">¿Asistirá a un taller?</option><option value="COMO PUBLICAR CON IMPACTO EN REVISTAS INDEXADAS">CÓMO PUBLICAR CON IMPACTO EN REVISTAS INDEXADAS</option><option value="GESTION DE DATOS DE CITAS: WOS Y SCOPUS FRENTE A GOOGLE SCHOLAR">GESTIÓN DE DATOS DE CITAS: WOS Y SCOPUS FRENTE A GOOGLE SCHOLAR</option></select></div></div></div>');
     p++;
     if (p >= 4) {
         $("#masperso").remove();

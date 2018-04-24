@@ -127,11 +127,13 @@ class Pages extends CI_Controller {
                 $a = "apellidos" . $i;
                 $tiden = "tipo_identificacion" . $i;
                 $iden = "identificacion" . $i;
+                $tal = "otrotaller" . $i;
                 $nombres = $this->input->post($n);
                 $apellidos = $this->input->post($a);
                 $identificacion = $this->input->post($iden);
                 $tipo_identificacion = $this->input->post($tiden);
-                $resultado = $this->Pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion);
+                $otrotaller = $this->input->post($tal);
+                $resultado = $this->Pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion,$otrotaller);
             }
         }
         echo json_encode($resultado);

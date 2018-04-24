@@ -39,13 +39,14 @@ class Pages_model extends CI_Model {
         return 0;
     }
 
-    public function guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $identificaciontipo) {
+    public function guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $identificaciontipo,$otro_taller) {
         $this->db->insert($this->inscripciones_mul_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
             "id_inscripcion" => $id_inscrip,
             "identificacion" => $identificacion,
             "tipo_identificacion" => $identificaciontipo,
+            "otro_taller" => $otro_taller,
         ));
 
         return 0;
