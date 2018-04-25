@@ -24,18 +24,18 @@ var idioma = {
 }
 var server = "localhost";
 var p = 0;
-var oc=0;
+var oc = 0;
 $(document).ready(function () {
     server = Traer_Server();
 
     // prueba(2);
-    $("#mostrar_ocultar").click(function (){
-        if (oc ==0){
-          $("#tabla-dinam tbody").show("slow");
-          oc=1;
-        }else{
+    $("#mostrar_ocultar").click(function () {
+        if (oc == 0) {
+            $("#tabla-dinam tbody").show("slow");
+            oc = 1;
+        } else {
             $("#tabla-dinam tbody").hide("slow");
-          oc=0;
+            oc = 0;
         }
     })
     $("#cbx_mas_personas").change(function () {
@@ -58,8 +58,8 @@ $(document).ready(function () {
 });
 
 function Traer_Server() {
-    // return "http://inscripcionescrecs.cuc.edu.co/";
-   return "http://localhost/InscripcionEvento/";
+    //return "http://inscripcionescrecs.cuc.edu.co/";
+    return "http://localhost/InscripcionEvento/";
 }
 
 $("#guardarinscripcion").submit(function () {
@@ -241,7 +241,7 @@ function Listar_Inscripciones() {
     var myTable = $("#tabla_inscripciones").DataTable({
         "destroy": true,
         "ajax": {
-            url:  server + "index.php/pages/Listar_Inscripciones",
+            url: server + "index.php/pages/Listar_Inscripciones",
             dataType: "json",
             type: "post",
         }, "columns": [
@@ -282,18 +282,47 @@ function Listar_Inscripciones() {
     $('a.toggle-vis').on('click', function (e) {
         e.preventDefault();
 
-        // Get the column API object
         var column = myTable.column($(this).attr('data-column'));
 
-        // Toggle the visibility
         column.visible(!column.visible());
     });
+    $('#tabla_inscripciones tbody').on('dblclick', 'tr', function () {
+        var data = myTable.row(this).data();
+        Listar_Inscripciones_multiples(data.id);
+
+
+    });
+}
+function Listar_Inscripciones_multiples(id) {
+
+
+    var myTable = $("#tabla_inscripciones_multiple").DataTable({
+        "destroy": true,
+        "ajax": {
+            url: server + "index.php/pages/Listar_Inscripciones_multiple",
+            dataType: "json", data: {
+                id: id
+            },
+            type: "post",
+        }, "columns": [
+            {"data": "nombre_completo"},
+            {"data": "tipo_identificacion"},
+            {"data": "identificacion"},
+            {"data": "otro_taller"},
+        ],
+        "language": idioma,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    $("#personal_multiple").modal("show")
 
 }
 function prueba(cc) {
     alert(cc)
     $.ajax({
-        url:  server + "index.php/pages/Listar_Inscripciones",
+        url: server + "index.php/pages/Listar_Inscripciones",
         dataType: "json",
         type: "post",
     }).done(function (datos) {

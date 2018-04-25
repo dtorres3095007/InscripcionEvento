@@ -30,13 +30,15 @@ class Pages extends CI_Controller {
         $this->load->view('pages/Cancelado_pago.php', $data);
         $this->load->view('templates/footer.php');
     }
- public function Exitoso() {
+
+    public function Exitoso() {
         //CARGO LAS VISTAS NECESARIAS PARA PINTAR LA PAGINA WEB
         $data['title'] = ucfirst("cancelado");
         $this->load->view('templates/header.php');
         $this->load->view('pages/Exitoso_pago.php', $data);
         $this->load->view('templates/footer.php');
     }
+
     public function GuardarInscripcion() {
         $nump = $this->input->post('nump');
         $nombres = $this->input->post('nombres');
@@ -133,7 +135,7 @@ class Pages extends CI_Controller {
                 $identificacion = $this->input->post($iden);
                 $tipo_identificacion = $this->input->post($tiden);
                 $otrotaller = $this->input->post($tal);
-                $resultado = $this->Pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion,$otrotaller);
+                $resultado = $this->Pages_model->guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $tipo_identificacion, $otrotaller);
             }
         }
         echo json_encode($resultado);
@@ -162,6 +164,19 @@ class Pages extends CI_Controller {
     function Listar_Inscripciones() {
         $inscripciones = array();
         $datos = $this->Pages_model->Listar();
+        foreach ($datos as $row) {
+            //   $row["indice"] = $i;
+            $inscripciones["data"][] = $row;
+            //   $i++;
+        }
+
+        echo json_encode($inscripciones);
+    }
+
+    function Listar_Inscripciones_multiple() {
+        $inscripciones = array();
+        $id = $this->input->post('id');
+        $datos = $this->Pages_model->Listar_Inscripciones_multiple($id);
         foreach ($datos as $row) {
             //   $row["indice"] = $i;
             $inscripciones["data"][] = $row;

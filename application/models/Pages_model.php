@@ -39,7 +39,7 @@ class Pages_model extends CI_Model {
         return 0;
     }
 
-    public function guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $identificaciontipo,$otro_taller) {
+    public function guardar_multiple($nombres, $apellidos, $id_inscrip, $identificacion, $identificaciontipo, $otro_taller) {
         $this->db->insert($this->inscripciones_mul_tabla, array(
             "nombres" => $nombres,
             "apellidos" => $apellidos,
@@ -79,7 +79,15 @@ class Pages_model extends CI_Model {
     public function Listar() {
         $this->db->select("*");
         $this->db->from($this->inscripciones_tabla);
- 
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function Listar_Inscripciones_multiple($id) {
+        $this->db->select("CONCAT(nombres, ' ',apellidos) nombre_completo, tipo_identificacion,identificacion,otro_taller",false);
+        $this->db->from($this->inscripciones_mul_tabla);
+        $this->db->where('id_inscripcion', $id);
         $query = $this->db->get();
         return $query->result_array();
     }
